@@ -2,7 +2,9 @@
 
 const keyword = document.querySelector('#keyword');
 const button = document.querySelector('#button');
-const display = document.querySelector('.search_display');
+const display = document.querySelector('.main_display');
+const search_display = document.querySelector('.search_display');
+const side_menu = document.querySelector('.side_menu');
 
 
 // General function that will be used to request data
@@ -14,22 +16,32 @@ function onRequestData(url, listener){
     oReq.send();
 }
 
+function register(search){
+  const element = document.createElement("button");
+  element.innerHTML = search;
+  side_menu.appendChild(element);
+  element.addEventListener("click",function(){
+    search_display.innerHTML = "";
+    onRequestData(`https://api.gettyimages.com/v3/search/images?phrase=${search}`, getImages);
+  });
+}
+
 button.addEventListener("click",function(){
-  display.innerHTML = "";
-  onRequestData(`https://api.gettyimages.com/v3/search/images?phrase=${keyword.value}`, getImage);
+  search_display.innerHTML = "";
+  onRequestData(`https://api.gettyimages.com/v3/search/images?phrase=${keyword.value}`, getImages);
+  register(`${keyword.value}`);
 });
 
-function getImage() {
+function getImages() {
   const requestData = JSON.parse(this.responseText);
-  console.log(requestData.images[0].display_sizes[0].uri);
-  const keyword_header = document.createElement("h2");
-  keyword_header.innerHTML = `${keyword.value}`;
-  display.appendChild(keyword_header);
+  const length = requestData.images.length;
 
-  const image = document.createElement("img");
-  image.className = "image";
-  image.setAttribute("src",requestData.images[0].display_sizes[0].uri);
+  for (let i = 0; i < length; i++){
+    const image = document.createElement("img");
+    image.className = "image";
+    image.setAttribute("src",requestData.images[i].display_sizes[0].uri);
 
-  display.appendChild(image);
+    search_display.appendChild(image);
+  }
 
 }

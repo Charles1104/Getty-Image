@@ -1,0 +1,76 @@
+body {
+  background-image: url("https://static.pexels.com/photos/1029/landscape-mountains-nature-clouds.jpg");
+}
+
+h1 {
+  text-align: center;
+  border-color: rgb(245,245,38);
+  border-style: double;
+  padding: 10px;
+  margin-bottom: 40px;
+  margin-left: 2%;
+}
+
+.control_bar{
+  display:flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.inputs{
+  margin-left: 2%;
+  margin-top: 0.5%;
+}
+
+#keyword{
+  width: 40%;
+  height: 50px;
+  margin-left: 2%;
+  border: solid 5px #c9c9c9;
+  box-shadow: inset 0 0 0 1px #707070;
+}
+
+#button{
+  width: 40%;
+  height: 60px;
+  color: #f15c5c;
+  background: #feee7d;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.main_display{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.search_display{
+  margin-top: 20px;
+  width: 65%;
+}
+
+.side_menu {
+    height: 100%;
+    width: 30%;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+    margin-top: 20px;
+
+}
+
+.side_menu a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+.side_menu a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
